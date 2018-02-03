@@ -12,7 +12,7 @@ router.all('/*', function(req, res, next) {
     if(data[path]){
         let mockData;
         if(typeof data[path] == "function"){
-            mockData = data[path]();
+            mockData = data[path](req.method,req.method == "GET" ? req.query : req.body);
         }else{
             mockData = Mock.mock(data[path]);
         }
